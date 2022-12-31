@@ -70,8 +70,9 @@ $(document).ready(() => {
        let name=$("#modifyPersonalNameBox").val();
        let psd=$("#modifyPersonalPsdBox").val();
        let gender=$("#modifyPersonalGenderBox").val();
-       let address=$("#modifyAddressBox").val();
+       let address=$("#modifyPersonalAddressBox").val();
        let email=$("#modifyPersonalEmailBox").val();
+       alert(address);
        $.post(
            '/ModifyAdministrator',
            {
@@ -136,7 +137,7 @@ $(document).ready(() => {
                         html += "<td>" + salesStaff.salesStaffSalary + "</td>";
                         html += "</tr>"
                     }
-                    // document.getElementById("salesStaffTable").innerHTML=html;
+                    document.getElementById("salesStaffTable").innerHTML=html;
                     $("#salesStaffTable").css("display","block");
                 } else {
                     alert(data + "\n" + status)
@@ -493,12 +494,9 @@ $(document).ready(() => {
 
     //-------------------------------进行订单管理-----------------------
     $("#getOrderByIdBtn").click(function () {
-        // document.getElementById("orderTable").innerHTML='';
+        document.getElementById("orderTable").innerHTML='';
         let oId=$("#getOrderByIdBox").val();
         oId=oId*1;
-        alert("getOrderByIdBtn")
-        $("#orderTable").find('tr').remove();
-
         $.post(
             '/Find',
             {
@@ -506,7 +504,6 @@ $(document).ready(() => {
                 ID:oId
             },
             function (data,status) {
-                alert(data)
                 if (status === "success") {
                     let orderList = JSON.parse(data);
                     let html='';
@@ -533,9 +530,7 @@ $(document).ready(() => {
                         html += "<td>" + order.consumption + "</td>";
                         html += "</tr>";
                     }
-                    // document.getElementById("orderTable").innerHTML=html;
-                    alert(html)
-                    $("#orderTable").append(html);
+                    document.getElementById("orderTable").innerHTML=html;
                     $("#orderTable").css("display","block");
                 } else {
                     alert(data + "\n" + status)

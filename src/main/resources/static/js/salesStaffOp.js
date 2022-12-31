@@ -110,4 +110,36 @@ $(document).ready(() => {
         )
     }
     );
+    $("#queryOrder").click(function () {
+        $("#resultBlock").css("display","none");
+        $("#order").css("display","block");
+        $.post(
+            '/CheckTakeOrders',
+            {
+                username: nm,
+                password: pwd,
+            },
+            function (data,status) {
+                if(status==="success"){
+                    let orderList = JSON.parse(data);
+                    let html='<tr><th>订单编号</th><th>订单时间</th><th>下单顾客</th><th>销售人员</th><th>总消费金额</th></tr>';
+                    for (let i = 0; i < orderList.length; i++) {
+                        let order= orderList[i];
+                        html += "<tr>";
+                        html += "<td>" +order.orderId + "</td>";
+                        html += "<td>" + order.orderTime+ "</td>";
+                        html += "<td>" + order.clientId + "</td>";
+                        html += "<td>" + order.salesStaffId + "</td>";
+                        html += "<td>" + order.consumption + "</td>";
+                        html += "</tr>";
+                    }
+                    document.getElementById("orderTable").innerHTML=html;
+                    $("#orderTable").css("display","block");
+                } else {
+                    alert(data + "\n" + status)
+                }
+            }
+        )
+    }
+    );
 });

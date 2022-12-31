@@ -60,6 +60,16 @@
                         </table>
                     </div>
                 </div>
+                <div id="order"   class="functionTable">
+                    <div class="functionTableHeader">
+                        <span class="functionTableClose">&times;</span>
+                        <h3>查看订单</h3>
+                    </div>
+                    <div>
+                        <table class="centerTable" id="orderTable">
+                        </table>
+                    </div>
+                </div>
 
                 <form>
                     <div id="modifyPersonalInformationTable" class="functionTable">
@@ -135,23 +145,6 @@
                     </div>
                 </div>
 
-                <!--                订单管理-->
-                <div id="queryOrderTable"   class="functionTable">
-                    <div class="functionTableHeader">
-                        <span class="functionTableClose">&times;</span>
-                        <h3>查询订单信息</h3>
-                    </div>
-                    <div>
-                        <table class="centerTable">
-                            <tr>
-                                <td class="label">订单编号</td>
-                                <td><input type="text" placeholder="订单编号"></td>
-                                <td><button id="getOrderByIdBtn">查询</button></td>
-                                <td><button id="getAllOrdersBtn">查询所有订单</button></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
 
             </div>
 <!--            结果区-->
@@ -162,7 +155,6 @@
                 <div class="resultTable">
                     <table id="productTable"></table>
                     <table id="clientTable"></table>
-                    <table id="orderTable"></table>
                 </div>
             </div>
         </div>
