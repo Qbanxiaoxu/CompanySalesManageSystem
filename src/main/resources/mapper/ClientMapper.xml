@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.csms.mapper.ClientMapper">
+    <insert id="addClient" parameterType="com.example.csms.bean.Client">
+        insert into clients (clientPassword,clientName,clientGender,clientAddress,clientEmail) values (#{clientPassword},#{clientName},#{clientGender},#{clientAddress},#{clientEmail})
+    </insert>
+    <delete id="deleteClient">
+        delete from Clients where ClientId=#{ClientId}
+    </delete>
+    <select id="findClient" parameterType="String" resultType="com.example.csms.bean.Client">
+        select clientId,clientPassword,clientName,clientGender,clientAddress,clientEmail from clients where clientName=#{username} and clientPassword=#{password}
+    </select>
+    <select id="findClientById" resultType="com.example.csms.bean.Client">
+        select clientId, clientPassword, clientName, clientGender, clientAddress, clientEmail from clients where clientId=#{clientId}
+    </select>
+    <update id="modifyClient">
+        update clients
+        <set>
+            <if test="clientPassword != null">
+                clientPassword=#{clientPassword},
+            </if>
+            <if test="clientName != null">
+                clientName=#{clientName},
+            </if>
+            <if test="clientGender != null">
+                clientGender=#{clientGender},
+            </if>
+            <if test="clientAddress != null">
+                clientAddress=#{clientAddress},
+            </if>
+            <if test="clientEmail != null">
+                clientEmail=#{clientEmail},
+            </if>
+            <if test="clientId !=null">
+                clientId=#{clientId},
+            </if>
+        </set>
+        where clientId=#{clientId}
+
+    </update>
+    <select id="queryClients" resultType="com.example.csms.bean.Client">
+        select clientId, clientPassword, clientName, clientGender, clientAddress, clientEmail from clients
+    </select>
+
+</mapper>

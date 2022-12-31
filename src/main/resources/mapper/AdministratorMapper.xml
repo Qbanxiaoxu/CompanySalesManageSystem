@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.csms.mapper.AdministratorMapper">
+    <insert id="addAdministrator" parameterType="com.example.csms.bean.Administrator">
+        INSERT INTO administrators (administratorPassword, administratorName, administratorGender, administratorAddress, administratorEmail) VALUES (#{administratorPassword},#{administratorName},#{administratorGender},#{administratorAddress},#{administratorEmail})
+    </insert>
+    <delete id="deleteAdministrator">
+        delete from administrators where administratorId=#{administratorId}
+    </delete>
+    <select id="findAdministrator" parameterType="String" resultType="com.example.csms.bean.Administrator">
+        select administratorId,administratorPassword,administratorName,administratorGender,administratorAddress,administratorEmail from administrators where administratorName=#{username} and administratorPassword=#{password}
+    </select>
+    <select id="findAdministratorById" resultType="com.example.csms.bean.Administrator">
+        select administratorId, administratorPassword, administratorName, administratorGender, administratorAddress, administratorEmail from administrators where administratorId=#{administratorId}
+    </select>
+    <update id="modifyAdministrator">
+        update administrators
+        <set>
+            <if test="administratorPassword != null">
+                administratorPassword=#{administratorPassword},
+            </if>
+            <if test="administratorName != null">
+                administratorName=#{administratorName},
+            </if>
+            <if test="administratorGender != null">
+                administratorGender=#{administratorGender},
+            </if>
+            <if test="administratorAddress != null">
+                administratorAddress=#{administratorAddress},
+            </if>
+            <if test="administratorEmail != null">
+                administratorEmail=#{administratorEmail},
+            </if>
+            <if test="administratorId !=null">
+                administratorId=#{administratorId},
+            </if>
+        </set>
+        where administratorId=#{administratorId}
+    </update>
+    <select id="queryAdministrators" resultType="com.example.csms.bean.Administrator">
+        select administratorId, administratorPassword, administratorName, administratorGender, administratorAddress, administratorEmail from administrators
+    </select>
+
+</mapper>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>客户界面</title>
+    <link rel="stylesheet" type="text/css" href="/css/page.css">
+    <link rel="stylesheet" type="text/css" href="/css/mainPage.css">
+    <link rel="stylesheet" type="text/css" href="/css/modal.css">
+    <script src="/js/jQuery3.6.1.js"></script>
+    <script src="/js/clientOp.js"></script>
+
+    <script src="/js/clientDisplay.js"></script>
+    <script src="/js/baseOperation.js"></script>
+</head>
+<body>
+<div id="body">
+    <div id="header">
+        <div id="title" class="floatLeft">
+            <h1>公司销售管理系统</h1>
+        </div>
+        <div id="welcomeMsg" class="floatLeft" style="display: inline-block">
+            <div id="displayUsername" style="font-size: 20px">欢迎您<br></div>
+        </div>
+    </div>
+    <div id="content">
+        <div id="menuBlock" class="floatLeft">
+            <ul id="menu">
+                <li>
+                    <p class="menu-t1">个人管理</p>
+                    <ul class="hide">
+                        <li class="menu-t2" id="querySelfInformation">查看</li>
+                        <li class="menu-t2" id="modifySelfInformation">修改</li>
+                    </ul>
+                </li>
+                <li>
+                    <p class="menu-t1" id="queryProduct">查询产品信息</p>
+                </li>
+
+                <li>
+                    <p class="menu-t1" id=>订单管理</p>
+                    <ul class="hide">
+                        <li class="menu-t2" id="queryFormerOrder">查看历史订单</li>
+                        <li class="menu-t2" id="addOrder">下单</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="rightContent">
+            <div id="functionBlock">
+                <div id="personalInformation" class="functionTable">
+                    <div class="functionTableHeader">
+                        <span class="functionTableClose">&times;</span>
+                        <h3>个人信息</h3>
+                    </div>
+                    <div>
+                        <table class="centerTable" id="personalTable">
+
+                        </table>
+                    </div>
+                </div>
+
+                <form>
+                    <div id="modifyPersonalInformationTable" class="functionTable">
+                        <div class="functionTableHeader">
+                            <span class="functionTableClose">&times;</span>
+                            <h3>修改个人信息</h3>
+                        </div>
+                        <div>
+                            <table class="centerTable">
+                                <tr>
+                                    <td class="label">ID</td>
+                                    <td><input  placeholder="ID" id="modifyIDBox"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">用户名</td>
+                                    <td><input  placeholder="用户名" id="modifyNameBox"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">密码</td>
+                                    <td><input  placeholder="密码" id="modifyPsdBox"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">性别</td>
+                                    <td><input  placeholder="性别" id="modifyGenderBox"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">地址</td>
+                                    <td><input  placeholder="地址" id="modifyAddressBox"></td>
+                                </tr>
+                                <tr>
+                                    <td class="label">邮箱</td>
+                                    <td><input  placeholder="邮箱" id="modifyEmailBox"></td>
+                                </tr>
+                                <tr><td><input id="modifyPersonalInformationBtn" value="确定" type="submit"></td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+
+
+                <!--                    查询产品-->
+                <div id="queryProductTable"   class="functionTable">
+                    <div class="functionTableHeader">
+                        <span class="functionTableClose">&times;</span>
+                        <h3>查询产品信息</h3>
+                    </div>
+                    <div>
+                        <table class="centerTable">
+                            <tr>
+                                <td class="label">产品编号</td>
+                                <td><input type="text" placeholder="产品编号" id="getProductByIdBox"></td>
+                                <td><button id="getProductByIdBtn">查询</button></td>
+                                <td><button id="getAllProductsBtn">查询所有产品</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="queryFormerOrderTable" class="functionTable">
+                    <div class="functionTableHeader">
+                        <span class="functionTableClose">&times;</span>
+                        <h3>查询历史订单</h3>
+                    </div>
+                    <div>
+                        <table class="centerTable" id="orderTable">
+                            <tr>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="addOrderTable" class="functionTable">
+                    <div class="functionTableHeader">
+                        <span class="functionTableClose">&times;</span>
+                        <h3>下单</h3>
+                    </div>
+                    <div>
+                        <table class="centerTable">
+                            <tr>
+                                <td><button id="showAddOrderModalBtn">下单</button></td>
+                                <td><button id="showShoppingCartModalBtn">查看购物车</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--                订单管理-->
+
+            <div id="resultBlock">
+                <div id="resultHeader">
+                    <h3>结果</h3>
+                </div>
+                <div class="resultTable">
+                    <table id="productTable"></table>
+                </div>
+            </div>
+
+            <form>
+                <div id="addOrderModal" class="modal">
+                    <div class="modalContent">
+                        <div class="modalHeader">
+                            <span class="close">&times;</span>
+                            <h3>新增订单</h3>
+                        </div>
+                        <div class="modalBody" style="text-align: center;margin: auto">
+                            <table class="modalTable" id="addOrderDetailTable" style="margin: auto">
+                                <tr>
+                                    <td><div class="label">产品编号</div></td>
+                                    <td><input type="text" id="addOrderProductIdBox" placeholder="产品编号"></td>
+                                </tr>
+                                <tr>
+                                    <td><div class="label">产品数量</div></td>
+                                    <td><input type="text" id="addOrderProductNumberBox" placeholder="产品数量"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="submit" id="addOrderDetailBtn" value="确认下单"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+            <form>
+                <div id="shoppingCartModal" class="modal">
+                    <div class="modalContent">
+                        <div class="modalHeader">
+                            <span class="close">&times;</span>
+                            <h3>购物车</h3>
+                            <input type="submit" id="addOrderBtn" value="提交订单">
+
+                        </div>
+                        <div class="modalBody" style="text-align: center;margin: auto">
+                            <table class="modalTable" id="shoppingCart" style="margin: auto;display: none">
+<!--                                <input type="submit" id="addOrderBtn" value="提交订单">-->
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let arrFunctionTable=[
+        'queryProductTable', 'queryOrderTable','delOrderTable','addOrderTable'];
+
+    function hide(arr,id) {
+
+        for(let i in arr){
+            if(arr[i]==id){
+                $("#"+arr[i]).css("display","block");
+            }
+            else{
+                $("#"+arr[i]).css("display","none");
+            }
+        }
+    }
+    $("#addOrder").click(function () {
+        hide(arrFunctionTable,"addOrderTable");
+        $("#resultBlock").css("display","none");
+    });
+
+    $("#showAddOrderModalBtn").click(function () {
+        $("#addOrderModal").css("display","block");
+    });
+
+    $("#showShoppingCartModalBtn").click(function () {
+        $("#shoppingCartModal").css("display","block");
+    });
+
+    $(".close").click(function () {
+        $(".modal").css("display","none");
+        $("#resultBlock").css("display","none");
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.csms.mapper.SalesStaffMapper">
+    <insert id="addSalesStaff" parameterType="com.example.csms.bean.SalesStaff">
+        INSERT INTO salesstaffs (salesStaffPassword, salesStaffName, salesStaffGender, salesStaffAddress, salesStaffEmail, salesStaffSalary) VALUES (#{salesStaffPassword},#{salesStaffName},#{salesStaffGender},#{salesStaffAddress},#{salesStaffEmail},#{salesStaffSalary});
+    </insert>
+    <delete id="deleteSalesStaff">
+        delete from salesstaffs where salesStaffId=#{salesStaffId}
+    </delete>
+    <select id="findSalesStaffById" resultType="com.example.csms.bean.SalesStaff">
+        select salesStaffId, salesStaffPassword, salesStaffName, salesStaffGender, salesStaffAddress, salesStaffEmail, salesStaffSalary from salesstaffs where salesStaffId=#{salesStaffId}
+    </select>
+    <select id="findSalesStaff" parameterType="String" resultType="com.example.csms.bean.SalesStaff">
+        select salesStaffId,salesStaffPassword,salesStaffName,salesStaffGender,salesStaffAddress,salesStaffEmail,salesStaffSalary from salesstaffs where salesStaffName=#{username} and salesStaffPassword=#{password}
+    </select>
+    <update id="modifySalesStaff">
+        update salesStaffs
+        <set>
+            <if test="salesStaffPassword != null">
+                salesStaffPassword=#{salesStaffPassword},
+            </if>
+            <if test="salesStaffName != null">
+                salesStaffName=#{salesStaffName},
+            </if>
+            <if test="salesStaffGender != null">
+                salesStaffGender=#{salesStaffGender},
+            </if>
+            <if test="salesStaffAddress != null">
+                salesStaffAddress=#{salesStaffAddress},
+            </if>
+            <if test="salesStaffEmail != null">
+                salesStaffEmail=#{salesStaffEmail},
+            </if>
+            <if test="salesStaffSalary != null">
+                salesStaffSalary=#{salesStaffSalary},
+            </if>
+            <if test="salesStaffId !=null">
+                salesStaffId=#{salesStaffId},
+            </if>
+        </set>
+        where salesStaffId=#{salesStaffId}
+    </update>
+    <select id="querySalesStaffs" resultType="com.example.csms.bean.SalesStaff">
+        select salesStaffId, salesStaffPassword, salesStaffName, salesStaffGender, salesStaffAddress, salesStaffEmail, salesStaffSalary from salesstaffs
+    </select>
+</mapper>

@@ -1,0 +1,55 @@
+#body{
+    display: flex;
+    flex-direction: column;
+}
+#header{
+    height: 10%;
+    width: 100%;
+}
+#content{
+    display: flex;
+    flex-direction: row;
+    height:1000px;
+}
+#title{
+    width:90%;
+    height:80px;
+    color:white;
+    text-align: left;
+    background-color:#4DD0E1 ;
+}
+#welcomeMsg{
+    width:10%;
+    height:80px;
+    text-align: center;
+    background-color: #80DEEA;
+}
+#menuBlock{
+    background-color: #E0F7FA;
+    width:25%;
+    height: 1000px;
+    bottom: 0;
+}
+#rightContent{
+    width:75%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+#functionBlock{
+    width: 100%;
+    height: 35%;
+    display: inline-block;
+}
+
+.resultTable{
+    /*display: none;*/
+    border-collapse: collapse;
+    border:1px solid black;
+    mso-cellspacing: 2px;
+}
+#salesStaffTable{
+    border:1px solid black;
+}
+

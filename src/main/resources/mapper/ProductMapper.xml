@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.csms.mapper.ProductMapper">
+    <insert id="addProduct" parameterType="com.example.csms.bean.Product">
+        INSERT INTO products (productName, productDescription, productPrice, productInventory) VALUES (#{productName},#{productDescription},#{productPrice},#{productInventory})
+    </insert>
+    <delete id="deleteProduct">
+        delete from products where productId=#{productId}
+    </delete>
+    <select id="findProduct" resultType="com.example.csms.bean.Product">
+        select productId, productName, productDescription, productPrice, productInventory from products where productId=#{productId}
+    </select>
+    <update id="modifyProduct">
+        update products
+        <set>
+            <if test="productName != null">
+                productName = #{productName},
+            </if>
+            <if test="productDescription != null">
+                productDescription = #{productDescription},
+            </if>
+            <if test="productPrice != null">
+                productPrice = #{productPrice},
+            </if>
+            <if test="productInventory != null">
+                productInventory = #{productInventory},
+            </if>
+            <if test="productId !=null">
+                productId=#{productId},
+            </if>
+        </set>
+        where productId=#{productId}
+    </update>
+    <select id="queryProducts" resultType="com.example.csms.bean.Product">
+        select productId, productName, productDescription, productPrice, productInventory from products
+    </select>
+</mapper>
